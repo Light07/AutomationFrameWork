@@ -17,8 +17,7 @@ def take_screenshot(func):
             path += "\screenshots_logs"
             if not os.path.exists(path):
                 os.mkdir(path)
-            # self.browser.save_screenshot("%s/%s_screenshot.jpg" % (path,class_name))
-            self.driver.save_screenshot("%s/%s_screenshot.jpg" % (path,class_name))
+            self.browser.save_screenshot("%s/%s_screenshot.jpg" % (path,class_name))
             #Save the Error Stack Information
             log_file = open("%s/%s.log" %(path,class_name),"a")
             log_file.write(traceback.format_exc())
