@@ -48,4 +48,3 @@ if __name__ == "__main__":
     def suite():
         return unittest.makeSuite(Baidu, "test")
     unittest.main(defaultTest = 'suite')
-
