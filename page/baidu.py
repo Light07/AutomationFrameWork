@@ -18,6 +18,7 @@ class Baidu(unittest.TestCase):
 
     @take_screenshot
     def test_baidu_search(self):
+        """Test search"""
         driver = self.browser
         driver.get(self.base_url + "/")
         driver.find_element_by_id("kw").send_keys("selenium webdriver")
@@ -27,6 +28,7 @@ class Baidu(unittest.TestCase):
 
     @take_screenshot
     def test_baidu_set(self):
+        """Test set preference"""
         driver = self.browser
         driver.get(self.base_url + "/gaoji/preferences.html")
         m=driver.find_element_by_xpath(".//*[@id='nr']")
@@ -40,7 +42,8 @@ class Baidu(unittest.TestCase):
         self.browser.quit()
         self.assertEqual([], self.verificationErrors)
 
-if __name__ == "__main__":
-    def suite():
-        return unittest.makeSuite(Baidu, "test")
-    unittest.main(defaultTest = 'suite')
+
+# if __name__ == "__main__":
+#     def suite():
+#         return unittest.makeSuite(Baidu, "test")
+#     unittest.main(defaultTest = 'suite')
