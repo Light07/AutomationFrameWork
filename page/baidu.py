@@ -1,51 +1,29 @@
+__author__ = 'kevin'
 #coding=utf-8
 
-import unittest, time
+import  time
 
-from selenium import webdriver
+import settings
+from settings.test_config import DEFAULT_SLEEP_TIME
 
-from common.take_screenshot import take_screenshot
+class BAI_DU(object):
+    def __init__(self, browser):
+        self.browser = browser
 
-class Baidu(unittest.TestCase):
-    def setUp(self):
-        default = "C:\Users\kevin\AppData\Roaming\Mozilla\Firefox\Profiles\dx2bpjh3.default"
-        profile = webdriver.FirefoxProfile(default)
-        self.browser = webdriver.Firefox(profile)
-        self.browser.implicitly_wait(30)
-        self.base_url = "http://www.baidu.com/"
-        self.verificationErrors = []
-        self.accept_next_alert = True
+    def search(self):
+        browser = self.browser
+        browser.get(settings.BAI_DU_HOME + "/")
+        browser.find_element_by_id("kw").send_keys("selenium webdriver")
+        browser.find_element_by_id("su").click()
+        time.sleep(DEFAULT_SLEEP_TIME)
+        browser.close()
 
-    @unittest.skip("not run")
-    @take_screenshot
-    def test_baidu_search(self):
-        """Test search"""
-        driver = self.browser
-        driver.get(self.base_url + "/")
-        driver.find_element_by_id("kw").send_keys("selenium webdriver")
-        driver.find_element_by_id("su").click()
-        time.sleep(2)
-        driver.close()
-
-    @take_screenshot
-    def test_baidu_set(self):
-        """Test set preference"""
-        driver = self.browser
-        driver.get(self.base_url + "/gaoji/preferences.html")
-        m=driver.find_element_by_xpath(".//*[@id='nr']")
-        m.find_element_by_xpath("//option[@value='10']").click()
-        time.sleep(2)
-        driver.find_element_by_xpath(".//*[@id='save']").click()
-        time.sleep(2)
-        driver.switch_to_alert().accept()
-
-    def tearDown(self):
-        self.browser.quit()
-        self.assertEqual([], self.verificationErrors)
-
-if __name__ == "__main__":
-
-    def suite():
-        return unittest.makeSuite(Baidu, "test")
-    unittest.main(defaultTest = 'suite')
-
+    def preferences(self):
+        browser = self.browser
+        browser.get(settings.BAI_DU_HOME + "/gaoji/preferences.html")
+        member_count=browser.find_element_by_xpath(".//*[@id='nr']")
+        member_count.find_element_by_xpath("//option[@value='10']").click()
+        time.sleep(DEFAULT_SLEEP_TIME)
+        browser.find_element_by_xpath(".//*[@id='save']").click()
+        time.sleep(DEFAULT_SLEEP_TIME)
+        browser.switch_to_alert().accept()

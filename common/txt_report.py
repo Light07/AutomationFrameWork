@@ -6,7 +6,7 @@ import os, re
 class Test(object):
     def __init__(self):
         self.test_base = os.path.dirname(os.path.dirname(__file__))
-        self.test_dir = os.path.join(self.test_base, 'page')
+        self.test_dir = os.path.join(self.test_base, 'test')
         self.test_list = os.listdir(self.test_dir)
 
         self.pattern = re.compile(r'(__init__.py|.*.pyc)')

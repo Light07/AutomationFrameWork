@@ -10,7 +10,7 @@
 #2."Page": -- The page under test,in this file, only store the page related function/method/date instead of test cases.\
 #            different page should have separated pages.
 #     --baidu  test example
-#     --
+#     --b2s      .........
 #3."Settings": --Global settings & configuration & global data.
 #    --__init__: Specify the test environment & configuration
 #    --data_source
