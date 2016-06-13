@@ -7,6 +7,7 @@ from common.take_screenshot import take_screenshot
 from common.selenium_helper import SeleniumHelper
 from page.b2s import LoginPage
 
+@unittest.skip("Won't Run")
 class TestB2SLogin(unittest.TestCase):
 
     def setUp(self):

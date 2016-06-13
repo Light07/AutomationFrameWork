@@ -1,6 +1,6 @@
 __author__ = 'kevin'
 
-import unittest,os, doctest
+import unittest,os
 from common.html_report import Generate_Report
 
 if __name__ == "__main__":

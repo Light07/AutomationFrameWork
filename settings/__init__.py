@@ -23,6 +23,5 @@ invalid_password = B2S.login_verification_accounts[key]['invalid_password']
 blank_user = B2S.login_verification_accounts[key]['blank_user']
 blank_password = B2S.login_verification_accounts[key]['blank_password']
 
-expired_user = B2S.login_verification_accounts[key]['expired_user']
-expired_password = B2S.login_verification_accounts[key]['expired_password']
-
+SEARCH_POLL_TIME = 1
+TIME_OUT = 60
