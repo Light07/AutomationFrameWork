@@ -25,3 +25,5 @@
 #Note:
 # If you want to skip some test or even the whole test class, just put @unittest.skip("description") \
 #in front of test case/test class
+
+# To use the HTML report, you need to download HTMLTestRunner.py from http://tungwaiyip.info/software/HTMLTestRunner.html then put this file to lib folder of your python installation directory.
