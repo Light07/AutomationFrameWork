@@ -10,7 +10,6 @@ take_screenshot: Take screenshot when cases run failure.
 txt_report: Independent way to run all the cases under test and generate simple txt format report.
 
 2. "Page": -- The page under test,in this file, only store the page related function/method/date instead of test cases. different page should have separated pages.
-
 baidu  test example
 b2s      .........
 
