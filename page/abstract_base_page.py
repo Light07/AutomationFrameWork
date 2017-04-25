@@ -2,8 +2,7 @@ import time
 
 from abc import ABCMeta, abstractmethod
 from DateTime import DateTime
-from hamcrest import assert_that
-from hamcrest import equal_to
+from assertpy import assert_that
 from page_objects import PageObject, PageElement
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver import ActionChains
@@ -22,7 +21,7 @@ class AbstractBasePage(PageObject):
         # Don't change the variable name w. it's used by PageObject
         self.w = driver
         self.driver = driver
-        assert_that(self.has_loaded(), equal_to(True), self.__class__.__name__ + ' is not load!')
+        assert_that(self.has_loaded()).is_equal_to(True)
 
     def has_loaded(self):
         try:
@@ -39,7 +38,7 @@ class AbstractBasePage(PageObject):
         try:
             WebDriverWait(self.driver, timeout).until(lambda driver: ele.is_displayed())
             result = True
-        except Exception, e:
+        except Exception:
             result = False
         return result
 

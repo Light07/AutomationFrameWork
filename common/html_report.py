@@ -13,7 +13,7 @@ class Generate_Report():
             fp = open(os.path.join(self.test_base,self.report_name),"a")
             fp.close()
         def generate_report(self, test_suites):
-            fp = file(os.path.join(self.test_base,self.report_name),"a")
+            fp = open(os.path.join(self.test_base,self.report_name),"a")
             runner = HTMLTestRunner.HTMLTestRunner(stream=fp,title="Automation_Test_Report",\
                                                    description="Below report show the results of auto run")
             runner.run(test_suites)

@@ -6,8 +6,8 @@ class Environment(object):
     STG  = "staging"
     LIVE = "www"
 
-PROXY = "202.99.232.54:80"
-FIRE_PROFILE = "C:\Users\kevin.cai\AppData\Roaming\Mozilla\Firefox\Profiles\ohs0zuk0.default"
+PROXY = ""
+FIRE_PROFILE = ""
 
 FIND_ELEMENT_TIMEOUT = 120
 DEFAULT_SLEEP_TIME = 2

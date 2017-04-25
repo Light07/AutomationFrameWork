@@ -1,8 +1,6 @@
 __author__ = 'kevin'
 
-from hamcrest import assert_that
-from hamcrest import contains_string
-from robot.utils.asserts import assert_equal
+from assertpy import assert_that
 from selenium.webdriver.common.keys import Keys
 from page_objects import page_element
 
@@ -29,7 +27,7 @@ class LoginPage(AbstractBasePage):
         AbstractBasePage.__init__(self, browser)
 
     def is_target_page(self):
-        return assert_that(self.browser.get(settings.B2S_URL), contains_string("/partner/elab"))
+        return assert_that(self.browser.get(settings.B2S_URL)).contains("/partner/elab")
 
     def error_username_message(self):
         return self.error_username.text
@@ -39,17 +37,17 @@ class LoginPage(AbstractBasePage):
 
     def invalid_user_login_validation(self):
         error_info = self.error_username_message()
-        assert_equal(error_info, 'Wrong email or password')
+        assert_that(error_info).is_equal_to('Wrong email or password')
 
     def blank_user_login_validation(self):
         error_info = self.error_username_message()
-        assert_equal(error_info, 'Please enter your email')
+        assert_that(error_info).is_equal_to('Please enter your email')
         error_info = self.error_password_message()
-        assert_equal(error_info, 'Please enter your password')
+        assert_that(error_info).is_equal_to('Please enter your password')
 
     def expired_user_login_validation(self):
         error_info = self.error_username_message()
-        assert_equal(error_info, 'Account expired')
+        assert_that(error_info).is_equal_to('Account expired')
 
     def login(self, user_name, password):
         self.user_element.send_keys(user_name)
@@ -58,4 +56,4 @@ class LoginPage(AbstractBasePage):
     def valid_login_validation(self):
         SeleniumHelper.wait_until_element_is_displayed(self.browser, self.LOGIN_XPATH)
         currentUrl = self.browser.current_url
-        assert_that(currentUrl, contains_string(self.MY_PAGE_STRING))
+        assert_that(currentUrl).contains(self.MY_PAGE_STRING)

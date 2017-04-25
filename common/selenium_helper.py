@@ -3,8 +3,7 @@ __author__ = 'kevin'
 import time
 
 import urllib
-import win32api
-from hamcrest import equal_to, assert_that, contains_string
+from assertpy import assert_that
 from selenium import webdriver
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.wait import WebDriverWait
@@ -20,9 +19,9 @@ class SeleniumHelper(object):
     @staticmethod
     def assertCurrentUrl(self, string, environment):
         currentUrl = self.browser.current_url
-        assert_that(currentUrl, contains_string(environment))
-        assert_that(self.getStatusCode(currentUrl), equal_to(200))
-        assert_that(currentUrl, contains_string(string))
+        assert_that(currentUrl).contains(environment)
+        assert_that(self.getStatusCode(currentUrl)).equal_to(200)
+        assert_that(currentUrl).contains(string)
 
     @staticmethod
     def open_browser(browser_name, chrome_proxy=None, firefox_profile=None,ie_proxy=None):
@@ -74,15 +73,15 @@ class SeleniumHelper(object):
         for handle in handles:
             if old_handle_list == None:
                 if handle == old_handle:
-                    print "%s is the old window's handler" %(handle)
+                    print ("%s is the old window's handler") %(handle)
                 else:
-                    print "%s is the new window's handler" %(handle)
+                    print ("%s is the new window's handler") %(handle)
                     break
             else:
                 if handle in old_handle_list:
-                    print "%s is the old window's handler" %(handle)
+                    print ("%s is the old window's handler") %(handle)
                 else:
-                    print "%s is the new window's handler" %(handle)
+                    print ("%s is the new window's handler") %(handle)
                     break
 
         browser.switch_to_window(handle)
@@ -129,7 +128,7 @@ class SeleniumHelper(object):
         try:
             browser.find_element_by_name(text)
             return True
-        except Exception as e:
+        except Exception:
             return False
 
     @staticmethod
@@ -139,7 +138,7 @@ class SeleniumHelper(object):
             try:
                 browser.find_element_by_xpath(xpath_locator)
                 break
-            except Exception as e:
+            except Exception:
                 time.sleep(DEFAULT_SLEEP_TIME)
                 time_waited += DEFAULT_SLEEP_TIME
                 if time_waited <= timeout:
@@ -190,15 +189,8 @@ class SeleniumHelper(object):
         try:
             browser.find_element_by_css_selector(css_selector)
             return True
-        except Exception as e:
+        except Exception:
             return False
-
-    @staticmethod
-    def move_mouse(x=0, y=0):
-        try:
-            win32api.SetCursorPos((x,y))
-        except BaseException:
-            pass
 
     @staticmethod
     def wait_until_element_disappers(browser, xpath_locator):
@@ -229,7 +221,7 @@ class SeleniumHelper(object):
         while (True):
             current_url = self.current_url
             try:
-                assert_that(self.getStatusCode(current_url), equal_to(200))
+                assert_that(self.getStatusCode(current_url)).equal_to(200)
                 break
             except Exception:
                 time_waited += DEFAULT_SLEEP_TIME
