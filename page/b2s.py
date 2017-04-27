@@ -1,12 +1,15 @@
+import time
+
+from ptest.assertion import assert_that
+
 __author__ = 'kevin'
 
-from assertpy import assert_that
 from selenium.webdriver.common.keys import Keys
 from page_objects import page_element
 
 from common.selenium_helper import SeleniumHelper
 from page.abstract_base_page import AbstractBasePage
-import settings
+from settings import B2S_URL
 
 
 class LoginPage(AbstractBasePage):
@@ -27,16 +30,17 @@ class LoginPage(AbstractBasePage):
         AbstractBasePage.__init__(self, browser)
 
     def is_target_page(self):
-        return assert_that(self.browser.get(settings.B2S_URL)).contains("/partner/elab")
+        self.browser.get(B2S_URL)
+        return assert_that(self.browser.current_url).contains("/partner/elab")
 
     def error_username_message(self):
-        return self.error_username.text
+        return self.error_username.get_attribute('innerHTML')
 
     def error_password_message(self):
-        return self.error_password.text
+        return self.error_password.get_attribute('innerHTML')
 
     def invalid_user_login_validation(self):
-        error_info = self.error_username_message()
+        error_info = self.error_username.get_attribute('innerHTML')
         assert_that(error_info).is_equal_to('Wrong email or password')
 
     def blank_user_login_validation(self):

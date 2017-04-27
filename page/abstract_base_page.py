@@ -21,7 +21,7 @@ class AbstractBasePage(PageObject):
         # Don't change the variable name w. it's used by PageObject
         self.w = driver
         self.driver = driver
-        assert_that(self.has_loaded()).is_equal_to(True)
+        assert_that(self.has_loaded()).is_true()
 
     def has_loaded(self):
         try:

@@ -1,41 +1,31 @@
+# Generic automationFrameWork on behalf of [ptest](https://pypi.python.org/pypi/ptest)
 
-#06/15/2015
-Author: kevin cai (kevin.cai@outlook.com)
-# Generic automationFrameWork
-### How to use:
+### Basic Usage:
+1. Decorate your test class with decorator @TestClass, @Test, @BeforeMethod.
+* @TestClass - a test class eg: @TestClass(run_mode="parallel")
+* @Test - a single test eg: @Test(tags=["regression", "smoke"])
+* @BeforeMethod - a method executed before a test run. eg:@BeforeMethod(description="Prepare test data.")
+* @AfterMethod - a method executed after a test run. eg:@AfterMethod(always_run=True, description="Clean up")
 
-1."Common":  --Common methods to facilitates the whole project.
+2. Run like below
+* >Python 2.x:
+ $ ptest -w c:\folder -t test.test_baidu -i "smoke" -n 2
 
-* html_report: To generate HTML report after test cases run.
-* SeleniumHelper:Encapsulate all the customized method related to selenium/webdriver.
-* take_screenshot: Take screenshot when cases run failure.
-* txt_report: Independent way to run all the cases under test and generate simple txt format report.
+ Python 3.x:
+ $ ptest3 -w c:\folder -t test.test_baidu -i "smoke" -n 2
 
-2."Page": --The page under test,in this file, only store the page related function/method/date instead of test cases.different page should have separated pages.
+* -w -the workspace
+* -t -the target to run
+* -i -tags defined next to @Test
+* -n The number of test executors, work along with run_mode, if "parallel", run parallelly, otherwise run cases one by one.
 
-* baidu  test example
+you can run by package/module/class/method/tags which are very flexible for your test,more usage, please refer to [ptest](https://pypi.python.org/pypi/ptest)
 
-* b2s      .........
+3. After run, a test report will generated with detail info, any failed cases will attached along with a sceeen shot.
 
-3."Settings": --Global settings & configuration & global data.
+* Overview report
+![Overview Report](http://i2.muimg.com/1949/22365f37c8ae3365.png)
 
-* __init__: Specify the test environment & configuration
+* Detail report
+![Detail Report](http://i2.muimg.com/1949/ffa841e9530e81cd.png)
 
-* data_source
-
-* test config:
-
-4."test" -- Test cases inherited from pages, this is the cases under test.
-
-* All the test cases related to separate pages are listed here.
-
-5."main"  -- Load & run all of the test cases defined in test folder.
-
-* System will automated search all the test method defined in test folder and run them.
-
-### Note:
-
-1. If you want to skip some test or even the whole test class, just put @unittest.skip("description") in front of test case/test class
-
-2. To use the HTML report, you need to download HTMLTestRunner.py from http://tungwaiyip.info/software/HTMLTestRunner.html then put this file to lib folder of your python installation directory.
-If you are using python 3, just copy HTMLTestRunner.py in the repo and put it into the Lib subfolder of your python installation directory.
