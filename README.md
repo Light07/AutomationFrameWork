@@ -1,5 +1,6 @@
 # Generic automationFrameWork on behalf of [ptest](https://pypi.python.org/pypi/ptest)
-
+![](https://img.shields.io/badge/language-python-green.svg) 
+![Shippable](https://img.shields.io/shippable/5444c5ecb904a4b21567b0ff.svg)
 ### Basic Usage:
 1. Decorate your test class with decorator @TestClass, @Test, @BeforeMethod.
 * @TestClass - a test class eg: @TestClass(run_mode="parallel")
