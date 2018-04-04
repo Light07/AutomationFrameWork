@@ -29,5 +29,5 @@ you can run by package/module/class/method/tags which are very flexible for your
 
 * Detail report
 
-![Detail Report](http://i4.bvimg.com/639741/10d8ab91e1257714s.jpg）
+![Detail Report](http://i4.bvimg.com/639741/10d8ab91e1257714s.jpg)
 
